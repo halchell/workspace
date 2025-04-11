@@ -15,3 +15,5 @@ writer.end();
 // ファイルから再びテキストを読み出す
 const result = await file.text();
 console.log(result);
+
+console.log(Bun.argv);
