@@ -2,7 +2,8 @@
 const file = Bun.file("output.txt");
 const source = await file.text();
 
-// コマンドライン引数の最後の文字列を取得する
+if(Bun.argv.length === 3){
+  // コマンドライン引数の最後の文字列を取得する
 const memo: string = Bun.argv.pop() ?? "";
 
 // ファイルに元のテキストと改行、日時を書き込む
@@ -15,3 +16,8 @@ writer.end();
 // ファイルから再びテキストを読み出す
 const result = await file.text();
 console.log(result);
+} else if(Bun.argv.length === 2){
+  console.log(source);
+} else{
+  throw new Error("追加のコマンドライン引数は1つまでです。");
+}
