@@ -13,7 +13,7 @@ const item: string = formatToItem(memo);
 const writer = file.writer();
 writer.write(source);
 writer.write("\n");
-writer.write(memo);
+writer.write(item);
 writer.end();
 
 // ファイルから再びテキストを読み出す
