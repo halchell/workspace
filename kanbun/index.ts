@@ -1,3 +1,5 @@
+import { formatToItem } from "./format";
+
 // output.txtをファイルとして取得し、テキストを読み出す
 const file = Bun.file("output.txt");
 const source = await file.text();
@@ -5,6 +7,7 @@ const source = await file.text();
 if(Bun.argv.length === 3){
   // コマンドライン引数の最後の文字列を取得する
 const memo: string = Bun.argv.pop() ?? "";
+const item: string = formatToItem(memo);
 
 // ファイルに元のテキストと改行、日時を書き込む
 const writer = file.writer();
