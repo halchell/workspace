@@ -1,26 +1,19 @@
-import { formatToItem } from "./format";
+import { Database } from "bun:sqlite"
+import { initializeItemTable } from "./db";
 
-// output.txtをファイルとして取得し、テキストを読み出す
-const file = Bun.file("output.txt");
-const source = await file.text();
+const db = new Database("sqlite.db")
 
-if(Bun.argv.length === 3){
+initializeItemTable(db);
+
+if(Bun.argv.length === 4){
   // コマンドライン引数の最後の文字列を取得する
-const memo: string = Bun.argv.pop() ?? "";
-const item: string = formatToItem(memo);
+const content: string = Bun.argv.pop() ?? "";
+const command: string = Bun.argv.pop() ?? "";
 
-// ファイルに元のテキストと改行、日時を書き込む
-const writer = file.writer();
-writer.write(source);
-writer.write("\n");
-writer.write(item);
-writer.end();
-
-// ファイルから再びテキストを読み出す
-const result = await file.text();
-console.log(result);
 } else if(Bun.argv.length === 2){
-  console.log(source);
+  
 } else{
   throw new Error("追加のコマンドライン引数は1つまでです。");
 }
+
+db.close();
