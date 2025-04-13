@@ -1,5 +1,5 @@
 import { Database } from "bun:sqlite"
-import { createMemo, initializeItemTable } from "./db";
+import { createMemo, createTodo, initializeItemTable } from "./db";
 
 const db = new Database("sqlite.db")
 
@@ -15,7 +15,7 @@ switch(command){
     createMemo(db, content)
     break;
   case "todo":
-    // TODO: タスクを追加する処理を書く
+    createTodo(db, content)
     break;
   case "done":
     // TODO: タスクを完了にする処理を書く

@@ -15,3 +15,9 @@ export function createMemo(db: Database, content: string){
   const query = db.query(queryString);
   query.run(content, "memo");
 }
+
+export function createTodo(db: Database, content: string){
+  const queryString = `INSERT INTO item (content, kind) VALUES (?, ?)`;
+  const query = db.query(queryString);
+  query.run(content, "todo");
+}
