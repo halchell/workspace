@@ -10,14 +10,8 @@ export function initializeItemTable(db: Database){
   query.run();
 }
 
-export function createMemo(db: Database, content: string){
+export function createItem(db: Database, content: string, kind: string){
   const queryString = `INSERT INTO item (content, kind) VALUES (?, ?)`;
   const query = db.query(queryString);
-  query.run(content, "memo");
-}
-
-export function createTodo(db: Database, content: string){
-  const queryString = `INSERT INTO item (content, kind) VALUES (?, ?)`;
-  const query = db.query(queryString);
-  query.run(content, "todo");
+  query.run(content, kind);
 }
