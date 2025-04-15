@@ -18,6 +18,12 @@ export function createItem(db: Database, content: string, kind: Kind){
   query.run(content, kind);
 }
 
+interface Item{
+  id: number;
+  content: string;
+  kind: Kind;
+}
+
 export function getItems(db: Database){
   const queryString = `SELECT * FROM item`;
   using query = db.query(queryString);
