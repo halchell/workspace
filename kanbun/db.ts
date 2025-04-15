@@ -24,8 +24,8 @@ interface Item{
   kind: Kind;
 }
 
-export function getItems(db: Database){
+export function getItems(db: Database): Item[]{
   const queryString = `SELECT * FROM item`;
   using query = db.query(queryString);
-  return query.all();
+  return query.all() as Item[];
 }
