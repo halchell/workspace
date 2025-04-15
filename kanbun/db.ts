@@ -10,18 +10,10 @@ export function initializeItemTable(db: Database){
   query.run();
 }
 
-type Kind = "memo" | "todo" | "done";
-
 export function createItem(db: Database, content: string, kind: Kind){
   const queryString = `INSERT INTO item (content, kind) VALUES (?, ?)`;
   const query = db.query(queryString);
   query.run(content, kind);
-}
-
-interface Item{
-  id: number;
-  content: string;
-  kind: Kind;
 }
 
 export function getItems(db: Database): Item[]{
