@@ -17,3 +17,9 @@ export function createItem(db: Database, content: string, kind: Kind){
   const query = db.query(queryString);
   query.run(content, kind);
 }
+
+export function getItems(db: Database){
+  const queryString = `SELECT * FROM item`;
+  using query = db.query(queryString);
+  return query.all();
+}

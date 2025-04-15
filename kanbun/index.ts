@@ -1,5 +1,5 @@
 import { Database } from "bun:sqlite"
-import { createItem, initializeItemTable } from "./db";
+import { createItem, getItems, initializeItemTable } from "./db";
 
 const db = new Database("sqlite.db")
 
@@ -25,7 +25,8 @@ switch(command){
 }
 
 } else if(Bun.argv.length === 2){
-  
+  const items = getItems(db);
+  console.log(items);
 } else{
   throw new Error("追加のコマンドライン引数は1つまでです。");
 }
