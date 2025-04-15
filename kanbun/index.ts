@@ -26,7 +26,9 @@ switch(command){
 
 } else if(Bun.argv.length === 2){
   const items = getItems(db);
-  console.log(items);
+  items.forEach((item) => {
+    console.log(item.content);
+  })
 } else{
   throw new Error("追加のコマンドライン引数は1つまでです。");
 }
