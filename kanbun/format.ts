@@ -1,4 +1,12 @@
-/** 文字列の先頭に `- ` をつけて返す */
-export function formatToItem(memo: string): string{
-  return `- ${memo}`;
+import type { Kind } from "./types";
+
+export function symbolizeKind(kind: Kind): string{
+  switch(kind){
+    case "memo":
+      return "-";
+    case "todo":
+      return "o";
+    case "done":
+      return "x";
+  }
 }
