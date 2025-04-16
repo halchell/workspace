@@ -1,5 +1,6 @@
 import { Database } from "bun:sqlite"
 import { createItem, getItems, initializeItemTable } from "./db";
+import { formatToItem } from "./format";
 
 const db = new Database("sqlite.db")
 
@@ -27,7 +28,7 @@ switch(command){
 } else if(Bun.argv.length === 2){
   const items = getItems(db);
   items.forEach((item) => {
-    console.log(item.content);
+    console.log(formatToItem(item));
   })
 } else{
   throw new Error("追加のコマンドライン引数は1つまでです。");
