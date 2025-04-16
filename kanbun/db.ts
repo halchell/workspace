@@ -1,4 +1,5 @@
 import { Database } from "bun:sqlite"
+import { Kind, Item } from "./types";
 
 export function initializeItemTable(db: Database){
   const queryString = `CREATE TABLE IF NOT EXISTS item(
