@@ -1,5 +1,5 @@
 import { Database } from "bun:sqlite"
-import { createItem, getItems, initializeItemTable } from "./db";
+import { createItem, getItems, initializeItemTable, updateTodoToDone } from "./db";
 import { formatToItem } from "./format";
 
 const db = new Database("sqlite.db")
@@ -19,7 +19,7 @@ switch(command){
     createItem(db, content, "todo")
     break;
   case "done":
-    // TODO: タスクを完了にする処理を書く
+    updateTodoToDone(db, content);
     break;
   default:
     throw new Error("不正なコマンドです");

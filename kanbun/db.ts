@@ -22,3 +22,20 @@ export function getItems(db: Database): Item[]{
   using query = db.query(queryString);
   return query.all() as Item[];
 }
+
+export function updateTodoToDone(db: Database, content: string){
+  const targetQueryString = `SELECT * FROM item WHERE content = ?`;
+  const targetQuery = db.query(targetQueryString);
+  const targetList = targetQuery.all(content) as Item[];
+  const target = targetList.pop();
+
+  if(target === undefined){
+    throw new Error("対象の項目が見つかりませんでした")
+  } else if(target.kind === "memo"){
+    throw new Error("メモは完了にできません");
+  }
+
+  const queryString = `UPDATE item SET kind = "done" WHERE id = ?`;
+  const query = db.query(queryString);
+  query.run(target.id);
+}
