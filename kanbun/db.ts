@@ -39,3 +39,9 @@ export function updateTodoToDone(db: Database, content: string){
   const query = db.query(queryString);
   query.run(target.id);
 }
+
+export function deleteItem(db: Database, content: string){
+  const queryString = `DELETE FROM item WHERE content = ?`;
+  const query = db.query(queryString);
+  query.run(content);
+}
