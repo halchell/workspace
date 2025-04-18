@@ -46,3 +46,9 @@ export function deleteItem(db: Database, content: string){
   const query = db.query(queryString);
   query.run(content);
 }
+
+export function archiveItems(db: Database){
+  const queryString = `UPDATE item SET archived = TRUE WHERE kind = "memo" OR kind = "done"`;
+  const query = db.query(queryString);
+  query.run();
+}

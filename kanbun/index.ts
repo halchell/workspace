@@ -1,5 +1,5 @@
 import { Database } from "bun:sqlite"
-import { createItem, deleteItem, getItems, initializeItemTable, updateTodoToDone } from "./db";
+import { archiveItems, createItem, deleteItem, getItems, initializeItemTable, updateTodoToDone } from "./db";
 import { formatToItem } from "./format";
 
 const db = new Database("sqlite.db")
@@ -27,6 +27,17 @@ switch(command){
   default:
     throw new Error("不正なコマンドです");
 }
+
+} else if (Bun.argv.length === 3) {
+  const command: string = Bun.argv.pop() ?? "";
+
+  switch (command) {
+    case "trim":
+      archiveItems(db);
+      break;
+    default:
+      throw new Error("不正なコマンドです");
+  }
 
 } else if(Bun.argv.length === 2){
   const items = getItems(db);
