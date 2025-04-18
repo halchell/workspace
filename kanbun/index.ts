@@ -28,6 +28,8 @@ switch(command){
     throw new Error("不正なコマンドです");
 }
 
+printItems(db);
+
 } else if (Bun.argv.length === 3) {
   const command: string = Bun.argv.pop() ?? "";
 
@@ -38,6 +40,8 @@ switch(command){
     default:
       throw new Error("不正なコマンドです");
   }
+
+  printItems(db);
 
 } else if(Bun.argv.length === 2){
   const items = getItems(db);
