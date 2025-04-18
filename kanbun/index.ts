@@ -49,3 +49,10 @@ switch(command){
 }
 
 db.close();
+
+function printItems(db: Database){
+  const items = getItems(db);
+  items.forEach((item) => {
+    console.log(formatToItem(item));
+  })
+}
