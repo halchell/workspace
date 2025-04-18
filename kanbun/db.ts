@@ -5,7 +5,8 @@ export function initializeItemTable(db: Database){
   const queryString = `CREATE TABLE IF NOT EXISTS item(
   id INTEGER PRIMARY KEY,
   content TEXT NOT NULL,
-  kind TEXT NOT NULL
+  kind TEXT NOT NULL,
+  archived BOOLEAN DEFAULT FALSE
   )`;
   const query = db.prepare(queryString)
   query.run();
