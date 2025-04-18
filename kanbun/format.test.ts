@@ -5,12 +5,14 @@ const itemMemo = {
   id: 1,
   content: "メモ",
   kind: "memo",
+  archived: false,
 } as const;
 
 const itemTodo = {
   id: 1,
   content: "Todo",
   kind: "todo",
+  archived: false,
 } as const;
 
 test("formatToItem", () => {
