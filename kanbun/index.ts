@@ -57,6 +57,9 @@ db.close();
 function printItems(db: Database){
   const items = getItems(db);
   items.forEach((item) => {
+    if(item.archived){
+      return;
+    }
     console.log(formatToItem(item));
   })
 }
