@@ -1,8 +1,12 @@
-Deno.serve(
-  (_req: Request) => 
-    new Response("<h1>Hello World</h1>",{
-      headers: {
-        "content-type": "text/html",
-      },
-    })
-);
+async function handler() {
+  const html = await Deno.readTextFile("./index.html");
+  const response = new Response(html, {
+    headers: {
+      "content-type": "text/html;charset=utf-8",
+    },
+  });
+
+  return response;
+}
+
+Deno.serve(handler);
