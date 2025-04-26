@@ -22,11 +22,21 @@ async function handler(req: Request){
   const markdown = completion.choices[0].message.content;
   const body = render(markdown ?? "結果なし");
   
-  const response = new Response(body,{
+  const response = new Response(
+    `<!DOCTYPE html>
+  <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sakura.css/css/sakura.css" type="text/css">
+  </head>
+  <body>
+ ${body}
+  </body>
+<html>`,
+  {
     headers: {
       "content-type": "text/html; charset=utf-8",
     },
-  });
+  }
+ );
 
   return response;
 }
