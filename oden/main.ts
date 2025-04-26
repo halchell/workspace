@@ -5,11 +5,16 @@ const openai = new OpenAI({
   apiKey: Deno.env.get("OPENAI_API_KEY"),
 });
 
-async function handler(){
+const RECIPE_ROUTE = new URLPattern({ pathname: "/:name" });
+
+async function handler(req: Request){
+  const match = RECIPE_ROUTE.exec(req.url);
+  const name: string = match?.pathname.groups.name ?? "おでん"
+
   const completion = await openai.chat.completions.create({
     messages: [
       {role: "system", content: "レシピ作成アシスタント"},
-      {role: "user", content: "おでん"} ,
+      {role: "user", content: name} ,
     ],
     model: "gpt-4o-mini",
     stream: true,
