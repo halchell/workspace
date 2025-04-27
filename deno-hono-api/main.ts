@@ -3,10 +3,9 @@ import { DOMParser } from "@b-fuze/deno-dom"
 
 const app = new Hono()
 
-app.get('/api/title', async (c) => {
-  const url = c.req.query("url") ?? "";
-
-  const res = await fetch(url);
+async function fetchHtmlTitle(url: string): Promise<string | undefined>{
+  try{
+    const res = await fetch(url);
   const html = await res.text();
 
   const parser = new DOMParser();
@@ -15,6 +14,20 @@ app.get('/api/title', async (c) => {
   const titleElement = document.querySelector("title");
   const title = titleElement?.textContent;
 
+  return title;
+  } catch{
+    return undefined;
+  }
+}
+
+app.get('/api/title', async (c) => {
+  const url = c.req.query("url") ?? "";
+
+  const title = await fetchHtmlTitle(url);
+
+  if(!title){
+    return c.json({ message: "ページタイトルが取得できませんでした"}, 400);
+  }
   return c.json<{ url: string; title: string }>({ url, title });
 });
 
