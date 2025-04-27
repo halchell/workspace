@@ -31,4 +31,9 @@ app.get('/api/title', async (c) => {
   return c.json<{ url: string; title: string }>({ url, title });
 });
 
+app.post("/api/bookmarks", async (c) => {
+  const body = await c.req.parseBody<{ url: string }>();
+  const url = body.url;
+})
+
 Deno.serve(app.fetch);
