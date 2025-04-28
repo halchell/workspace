@@ -3,6 +3,8 @@ import { DOMParser } from "@b-fuze/deno-dom"
 
 const app = new Hono()
 
+const kv = await Deno.openKv();
+
 async function fetchHtmlTitle(url: string): Promise<string | undefined>{
   try{
     const res = await fetch(url);
