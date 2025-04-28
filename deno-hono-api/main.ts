@@ -36,6 +36,11 @@ app.get('/api/title', async (c) => {
 app.post("/api/bookmarks", async (c) => {
   const body = await c.req.parseBody<{ url: string }>();
   const url = body.url;
+
+  const title = await fetchHtmlTitle(url);
+
+  const result = await kv.set(["bookmark", url], { url, title });
+  return c.json({ result }, 201);
 })
 
 Deno.serve(app.fetch);
