@@ -1,6 +1,11 @@
 import { Hono } from 'hono';
 import { DOMParser } from "@b-fuze/deno-dom"
 
+interface Bookmark{
+  readonly url: string;
+  readonly title: string;
+}
+
 const app = new Hono()
 
 const kv = await Deno.openKv();
@@ -42,5 +47,15 @@ app.post("/api/bookmarks", async (c) => {
   const result = await kv.set(["bookmark", url], { url, title });
   return c.json({ result }, 201);
 })
+
+app.get("/api/bookmarks", async (c) => {
+  const bookmarkListIterator = kv.list<Bookmark>({ prefix: ["bookmark"]});
+
+  const bookmarks = [];
+  for await(const bookmark of bookmarkListIterator){
+    bookmarks.push(bookmark);
+  }
+  return c.json({ bookmarks });
+});
 
 Deno.serve(app.fetch);
