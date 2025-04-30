@@ -55,7 +55,8 @@ app.get("/api/bookmarks", async (c) => {
   for await(const bookmark of bookmarkListIterator){
     bookmarks.push(bookmark);
   }
-  return c.json({ bookmarks });
+  const bookmarksReversed = bookmarks.toReversed();
+  return c.json({ bookmarks: bookmarksReversed });
 });
 
 Deno.serve(app.fetch);
