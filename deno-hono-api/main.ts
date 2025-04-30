@@ -59,4 +59,16 @@ app.get("/api/bookmarks", async (c) => {
   return c.json({ bookmarks: bookmarksReversed });
 });
 
+app.put("/api/bookmarks/:url", async (c) => {
+  const url = c.req.param("url");
+  const decodedUrl = decodeURIComponent(url);
+  const body = await c.req.parseBody<{ title: string }>();
+  const title = body.title;
+  const result = await kv.set(["bookmark", decodedUrl], {
+    url: decodedUrl,
+    title,
+  });
+  return c.json({ result });
+});
+
 Deno.serve(app.fetch);
