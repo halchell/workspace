@@ -71,4 +71,11 @@ app.put("/api/bookmarks/:url", async (c) => {
   return c.json({ result });
 });
 
+app.delete("/api/bookmarks/:url", async (c) => {
+  const url = c.req.param("url");
+  const decodedUrl = decodeURIComponent(url);
+  const result = await kv.delete(["bookmark", decodedUrl]);
+  return c.json({ result });
+});
+
 Deno.serve(app.fetch);
