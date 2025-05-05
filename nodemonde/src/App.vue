@@ -14,7 +14,11 @@
   <h1>Country Info</h1>
 
   <button @click = "fetchCountries">Fetch</button>
-
+  <article v-for="country in countries">
+    <div>{{ country.name.common }}</div>
+    <div>{{ country.flags.png }}</div>
+    <div>{{ country.tld }}</div>
+  </article>
   <div>{{ countries }}</div>
 </template>
 
