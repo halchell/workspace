@@ -11,7 +11,11 @@
 </script>
 
 <template>
-  <HelloWorld msg="Vite + Vue" />
+  <h1>Country Info</h1>
+
+  <button @click = "fetchCountries">Fetch</button>
+
+  <div>{{ countries }}</div>
 </template>
 
 <style scoped></style>
