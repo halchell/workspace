@@ -22,3 +22,15 @@ defineProps<{
     </div>
   </article>
 </template>
+
+<style scoped>
+article {
+  display: flex;
+  text-align: left;
+  padding: 2rem;
+  gap: 1rem;
+  background-color: lightskyblue;
+  border-radius: 1rem;
+  margin-top: 2rem;
+}
+</style>
