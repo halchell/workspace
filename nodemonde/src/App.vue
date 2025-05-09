@@ -16,12 +16,13 @@
 
   <input v-model="input" placeholder="country name" />
   <button type = "button" @click = "fetchCountries">Fetch</button>
-  <article v-for="country in countries">
-    <div>{{ country.name.common }}</div>
-    <div>{{ country.flags.png }}</div>
-    <div>{{ country.tld }}</div>
-  </article>
-  <div>{{ countries }}</div>
+  <Card
+    v-for="country in countries"
+    :key="country.name.common"
+    :name="country.name.common"
+    :image="country.flags.png"
+    :tldList="country.tld"
+  />
 </template>
 
 <style scoped></style>
