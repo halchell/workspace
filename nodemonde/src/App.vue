@@ -15,7 +15,7 @@
   <h1>Country Info</h1>
 
   <input v-model="input" placeholder="country name" />
-  <button @click = "fetchCountries">Fetch</button>
+  <button type = "button" @click = "fetchCountries">Fetch</button>
   <article v-for="country in countries">
     <div>{{ country.name.common }}</div>
     <div>{{ country.flags.png }}</div>
