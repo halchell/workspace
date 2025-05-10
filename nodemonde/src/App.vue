@@ -14,8 +14,11 @@
 <template>
   <h1>Country Info</h1>
 
-  <input v-model="input" placeholder="country name" />
-  <button type = "button" @click = "fetchCountries">Fetch</button>
+  <form @submit.prevent="fetchCountries">
+    <input v-model="input" placeholder="country name" />
+    <button type = "button" @click = "fetchCountries">Fetch</button>
+  </form>
+  
   <Card
     v-for="country in countries"
     :key="country.name.common"
