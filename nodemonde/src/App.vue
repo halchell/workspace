@@ -16,7 +16,7 @@
 
   <form @submit.prevent="fetchCountries">
     <input v-model="input" placeholder="country name" />
-    <button type = "button" @click = "fetchCountries">Fetch</button>
+    <button type = "submit">Fetch</button>
   </form>
   
   <Card
