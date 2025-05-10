@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import { ref } from "vue";
+  import Card from "./components/Card.vue";
 
   const input = ref("")
   const countries = ref();
