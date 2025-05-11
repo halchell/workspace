@@ -6,7 +6,7 @@
   const countries = ref();
 
   async function fetchCountries(){
-    const response = await fetch("https://restcountries.com/v3.1/name/${input.value}");
+    const response = await fetch(`https://restcountries.com/v3.1/name/${input.value}`);
     const data = await response.json();
     countries.value = data
 }
